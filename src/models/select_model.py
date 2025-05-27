@@ -4,12 +4,12 @@ from models.XGBOOST import Xgboost
 from models.VOTING import Voting
 
 def SelectModel(model_name: str, 
-                **params):
+                params: dict):
     
     # Every models are implement using the scikit-learn API
-    model = {'lightgbm': LightGBM(params), 
-             'randomforest': Randomforest(params), 
-             'xgboost': Xgboost(params),
-             'voting': Voting(params)}
+    model = {'lightgbm': LightGBM, 
+             'randomforest': Randomforest, 
+             'xgboost': Xgboost,
+             'voting': Voting}
 
-    return model[model_name]
+    return model[model_name](params)

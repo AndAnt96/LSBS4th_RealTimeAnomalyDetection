@@ -5,7 +5,6 @@ from sklearn.ensemble import RandomForestClassifier, VotingClassifier, BaggingCl
 
 from utils import logger
 
-
 def Xgboost(params):
     
     param_set = {}
@@ -18,6 +17,7 @@ def Xgboost(params):
         )
     
     logger.info(f'load Voting model')
-    return  
+    return {"parameters": param_set,
+            "estimator": classifier}
 # GridSearchCV(estimator=classifier, 
 #                         param_grid=param_set)

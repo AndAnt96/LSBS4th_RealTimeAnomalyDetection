@@ -1,6 +1,7 @@
 {
     "model": "voting",
     "seed": 600,
+    "export": false,
     "test_split_ratio": 0.2,
 
     "rf": {

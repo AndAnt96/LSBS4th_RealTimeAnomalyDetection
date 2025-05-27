@@ -32,7 +32,7 @@ class IQRClipper(BaseEstimator, TransformerMixin):
 class LoadDataset:
     def __init__(self,
                  isTrain: bool,
-                 **params):
+                 params:dict):
         self.isTrain = isTrain
         if isTrain:
             self.data = pd.read_csv('../data/train.csv')    
@@ -40,7 +40,8 @@ class LoadDataset:
             self.data = pd.read_csv('../data/test.csv')
             
         self.spilt_ratio = params['test_split_ratio']
-
+    
+    # it needs to refactoring about split to train and test 
     def preprocessing(self) -> dict:
         # train phase
         if self.isTrain:
@@ -69,7 +70,9 @@ class LoadDataset:
             # 데이터 분할
             X = self.data[numeric_cols + categorical_cols]
             y = self.data['passorfail'].astype(int)
-            X_train, X_test, y_train, y_test = train_test_split(X, y, stratify=y, test_size=self.spilt_ratio, random_state=42)
+            X_train, X_test, y_train, y_test = train_test_split(X, y, 
+                                                                stratify=y, 
+                                                                test_size=self.spilt_ratio)
             
             # pipeline of numerical data 
             numeric_transformer = Pipeline(steps=[

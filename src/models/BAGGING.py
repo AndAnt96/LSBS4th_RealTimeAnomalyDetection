@@ -2,7 +2,7 @@ from lightgbm import LGBMClassifier
 from sklearn.ensemble import RandomForestClassifier, BaggingClassifier
 from sklearn.model_selection import GridSearchCV
 
-from utils import logger
+from utils import logger, set_parameters
 
 def Bagging(params):
     
@@ -11,10 +11,9 @@ def Bagging(params):
     }
     
     classifier = BaggingClassifier(
-        estimator=LGBMClassifier(random_state=42), 
-        n_estimators=10,
+        estimator=LGBMClassifier(), 
         bootstrap=True,
-        n_jobs=-1) 
+        n_jobs=5) 
 
     logger.info(f'load Bagging model')
 
